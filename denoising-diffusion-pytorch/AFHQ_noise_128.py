@@ -62,7 +62,7 @@ diffusion = torch.nn.DataParallel(diffusion, device_ids=range(torch.cuda.device_
 
 trainer = Trainer(
     diffusion,
-    '../deblurring-diffusion-pytorch/AFHQ/afhq/train/',
+    '/home/DXR87KE/gits/Cold-Diffusion-Models/denoising-diffusion-pytorch/data/afhq/train/',
     image_size = 128,
     train_batch_size = 32,
     train_lr = 2e-5,

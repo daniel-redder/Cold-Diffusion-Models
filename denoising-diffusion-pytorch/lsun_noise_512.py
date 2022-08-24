@@ -48,7 +48,7 @@ model = Unet(
 
 diffusion = GaussianDiffusion(
     model,
-    image_size = 512,
+    image_size = 256,
     channels = 3,
     timesteps = args.time_steps,   # number of steps
     loss_type = args.loss_type,    # L1 or L2
@@ -63,8 +63,8 @@ diffusion = torch.nn.DataParallel(diffusion, device_ids=range(torch.cuda.device_
 trainer = Trainer(
     diffusion,
     args.data_path,
-    image_size = 512,
-    train_batch_size = 16,
+    image_size = 256,
+    train_batch_size = 8,
     train_lr = 2e-5,
     train_num_steps = args.train_steps,         # total training steps
     gradient_accumulate_every = 2,    # gradient accumulation steps
