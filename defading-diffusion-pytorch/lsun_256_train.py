@@ -38,7 +38,7 @@ parser.add_argument('--residual', action="store_true")
 args = parser.parse_args()
 print(args)
 
-model = Model(resolution=32,
+model = Model(resolution=256,
               in_channels=3,
               out_ch=3,
               ch=128,
