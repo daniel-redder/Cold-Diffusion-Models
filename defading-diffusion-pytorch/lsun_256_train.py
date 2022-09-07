@@ -48,7 +48,7 @@ model = Model(resolution=32,
               dropout=0.1).cuda()
 
 diffusion = GaussianDiffusion(
-    model,
+    model=model,
     image_size=256,
     device_of_kernel='cuda',
     channels=3,
