@@ -41,7 +41,7 @@ print(args)
 model = Model(resolution=256,
               in_channels=3,
               out_ch=3,
-              ch=128,
+              ch=32,
               ch_mult=(1, 2, 2, 2),
               num_res_blocks=2,
               attn_resolutions=(16,),
