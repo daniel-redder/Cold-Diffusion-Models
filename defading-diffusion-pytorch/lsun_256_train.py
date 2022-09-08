@@ -38,13 +38,14 @@ parser.add_argument('--residual', action="store_true")
 args = parser.parse_args()
 print(args)
 
-model = Unet(
-    dim=64,
-    dim_mults=(1, 2, 4, 8),
-    channels=3,
-    with_time_emb=not args.remove_time_embed,
-    residual=args.residual
-).cuda()
+model = Model(resolution=32,
+              in_channels=3,
+              out_ch=3,
+              ch=128,
+              ch_mult=(1, 2, 2, 2),
+              num_res_blocks=2,
+              attn_resolutions=(16,),
+              dropout=0.1).cuda()
 
 diffusion = GaussianDiffusion(
     model,
