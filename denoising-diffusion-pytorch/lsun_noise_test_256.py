@@ -1,5 +1,5 @@
 #from comet_ml import Experiment
-from demixing_noise_diffusion_pytorch import Unet, GaussianDiffusion, Trainer
+from denoising_diffusion_pytorch import Unet, GaussianDiffusion, Trainer
 import torchvision
 import os
 import errno
