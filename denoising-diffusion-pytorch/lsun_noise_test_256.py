@@ -24,9 +24,9 @@ def del_folder(path):
 parser = argparse.ArgumentParser()
 parser.add_argument('--time_steps', default=50, type=int)
 parser.add_argument('--train_steps', default=700000, type=int)
-parser.add_argument('--save_folder', default='./results_cifar10', type=str)
-parser.add_argument('--data_path', default='../deblurring-diffusion-pytorch/AFHQ/afhq/train/', type=str)
-parser.add_argument('--load_path', default=None, type=str)
+parser.add_argument('--save_folder', default='./lsun_testing_results_default', type=str)
+parser.add_argument('--data_path', default='/home/DXR87KE/gits/data/resized_kitchen_data_testing/', type=str)
+parser.add_argument('--load_path', default="/home/DXR87KE/gits/Cold-Diffusion-Models/denoising-diffusion-pytorch/lsun_256random_result/model.pt", type=str)
 parser.add_argument('--train_routine', default='Final', type=str)
 parser.add_argument('--sampling_routine', default='default', type=str)
 parser.add_argument('--remove_time_embed', action="store_true")
@@ -54,7 +54,7 @@ model = Unet(
 
 diffusion = GaussianDiffusion(
     model,
-    image_size = 128,
+    image_size = 256,
     channels = 3,
     timesteps = args.time_steps,   # number of steps
     loss_type = args.loss_type,    # L1 or L2
@@ -69,8 +69,8 @@ diffusion = torch.nn.DataParallel(diffusion, device_ids=range(torch.cuda.device_
 trainer = Trainer(
     diffusion,
     img_path,
-    image_size = 128,
-    train_batch_size = 32,
+    image_size = 256,
+    train_batch_size = 8,
     train_lr = 2e-5,
     train_num_steps = args.train_steps,         # total training steps
     gradient_accumulate_every = 2,    # gradient accumulation steps
